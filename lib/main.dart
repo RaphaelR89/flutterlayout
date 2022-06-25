@@ -6,6 +6,18 @@ void main() => runApp(MeuApp());
 
 // ignore: use_key_in_widget_constructors
 class MeuApp extends StatelessWidget {
+  callAction() {
+    print('clicou call');
+  }
+
+  mapAction() {
+    print('clicou mapa');
+  }
+
+  shareAction() {
+    print('clicou share');
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,9 +55,15 @@ class MeuApp extends StatelessWidget {
               Container(
                   child: Row(
                 children: [
-                  Botao(icon: Icons.call, text: "Ligar", onPress: () {}),
-                  Botao(icon: Icons.location_on, text: "Mapa", onPress: () {}),
-                  Botao(icon: Icons.share, text: "Compartilhar", onPress: () {})
+                  Botao(icon: Icons.call, text: "Ligar", onPress: callAction),
+                  Botao(
+                      icon: Icons.location_on,
+                      text: "Mapa",
+                      onPress: mapAction),
+                  Botao(
+                      icon: Icons.share,
+                      text: "Compartilhar",
+                      onPress: shareAction)
                 ],
               )),
               Container(
@@ -61,7 +79,7 @@ class MeuApp extends StatelessWidget {
 class Botao extends StatelessWidget {
   Botao({required this.onPress, required this.icon, required this.text});
 
-  Function onPress;
+  final VoidCallback onPress;
   IconData icon;
   var text;
 
@@ -69,7 +87,7 @@ class Botao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextButton(
-        onPressed: onPress(),
+        onPressed: onPress,
         child: Column(children: [Icon(icon, color: Colors.blue), Text(text)]),
       ),
     );

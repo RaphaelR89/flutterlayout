@@ -42,7 +42,11 @@ class MeuApp extends StatelessWidget {
                   )),
               Container(
                   child: Row(
-                children: [Botao(), Botao(), Botao()],
+                children: [
+                  Botao(icon: Icons.call, text: "Ligar", onPress: () {}),
+                  Botao(icon: Icons.location_on, text: "Mapa", onPress: () {}),
+                  Botao(icon: Icons.share, text: "Compartilhar", onPress: () {})
+                ],
               )),
               Container(
                   padding: EdgeInsets.all(20),
@@ -55,15 +59,18 @@ class MeuApp extends StatelessWidget {
 }
 
 class Botao extends StatelessWidget {
+  Botao({required this.onPress, required this.icon, required this.text});
+
+  Function onPress;
+  IconData icon;
+  var text;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: TextButton(
-        onPressed: (null),
-        child: Column(children: [
-          Icon(Icons.share, color: Colors.blue),
-          Text('Compartilhar')
-        ]),
+        onPressed: onPress(),
+        child: Column(children: [Icon(icon, color: Colors.blue), Text(text)]),
       ),
     );
   }
